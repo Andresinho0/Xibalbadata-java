@@ -34,7 +34,8 @@ public class Lista_pozosService {
 			Lista_pozos lista_pozosFoundToUpdate = lista_pozosFound.get();
 			lista_pozosFoundToUpdate.setL_poz_clave(lista_pozosToUpate.getL_poz_clave(	));
 			lista_pozosFoundToUpdate.setLp_Nombre(lista_pozosToUpate.getLp_Nombre());
-			//lista_pozosFoundToUpdate.setLp_Ubicación(lista_pozosToUpate.getLp_Ubicación());
+			lista_pozosFoundToUpdate.setLp_ramal(lista_pozosToUpate.getLp_ramal());
+			lista_pozosFoundToUpdate.setLp_ubicacion(lista_pozosToUpate.getLp_ubicacion());
 			lista_pozosFoundToUpdate.setLp_Profundidad_perforación(lista_pozosToUpate.getLp_Profundidad_perforación());
 			lista_pozosFoundToUpdate.setLp_Diámetro_perforación(lista_pozosToUpate.getLp_Diámetro_perforación());
 			lista_pozosFoundToUpdate.setLp_Diámetro_ADEME(lista_pozosToUpate.getLp_Diámetro_ADEME());
