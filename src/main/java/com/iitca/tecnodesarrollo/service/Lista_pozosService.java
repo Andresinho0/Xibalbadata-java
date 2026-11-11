@@ -46,6 +46,7 @@ public class Lista_pozosService {
 			lista_pozosFoundToUpdate.setLp_pa_cdmx(lista_pozosToUpate.getLp_pa_cdmx());
 			lista_pozosFoundToUpdate.setLp_telemetria(lista_pozosToUpate.getLp_telemetria());
 			lista_pozosFoundToUpdate.setLp_utr(lista_pozosToUpate.getLp_utr());
+			lista_pozosFoundToUpdate.setLp_altura(lista_pozosToUpate.getLp_altura());
 			return lista_pozosRepo.save(lista_pozosFoundToUpdate);
 		}else {
 			return null;

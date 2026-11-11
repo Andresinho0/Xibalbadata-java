@@ -62,6 +62,9 @@ public class Lista_pozos {
     @Column(name = "lp_utr")
     private String lp_utr;
 
+    @Column (name = "lp_altura")
+    private String lp_altura;
+
     public int getId_lp() {
         return id_lp;
     }
@@ -173,6 +176,14 @@ public class Lista_pozos {
 
     public void setLp_ubicacion(String lp_ubicacion) {
         this.lp_ubicacion = lp_ubicacion;
+    }
+
+    public String getLp_altura() {
+        return lp_altura;
+    }
+
+    public void setLp_altura(String lp_altura) {
+        this.lp_altura = lp_altura;
     }
 
 

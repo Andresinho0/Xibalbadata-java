@@ -58,6 +58,7 @@ public class Lista_pozosControler {
 		System.out.println(lista_pozos.getLp_pa_cdmx());
 		System.out.println(lista_pozos.getLp_telemetria());
 		System.out.println(lista_pozos.getLp_utr());
+		System.out.println(lista_pozos.getLp_altura());
 
 		return new ResponseEntity<>(lista_pozosService.savelista_pozos(lista_pozos),HttpStatus.CREATED);
 	}
