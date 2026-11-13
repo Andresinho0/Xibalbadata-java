@@ -68,6 +68,23 @@ public class Lista_pozos {
     @Column (name = "lp_altura")
     private String lp_altura;
 
+    @Column (name = "lp_estado")
+    private String lp_estado;
+
+    @Column (name = "lp_municipio")
+    private String lp_municipio;
+
+    @Column (name = "lp_dependencia_informante")
+    private String lp_dependencia_informante;
+
+    @Column (name = "lp_columna_succion", precision = 10, scale = 2)
+    private Double lp_columna_succion;
+
+
+
+
+
+
     public int getId_lp() {
         return id_lp;
     }
@@ -187,6 +204,38 @@ public class Lista_pozos {
 
     public void setLp_altura(String lp_altura) {
         this.lp_altura = lp_altura;
+    }
+
+    public String getLp_estado() {
+        return lp_estado;
+    }
+
+    public void setLp_estado(String lp_estado) {
+        this.lp_estado = lp_estado;
+    }
+
+    public String getLp_municipio() {
+        return lp_municipio;
+    }
+
+    public void setLp_municipio(String lp_municipio) {
+        this.lp_municipio = lp_municipio;
+    }
+
+    public String getLp_dependencia_informante() {
+        return lp_dependencia_informante;
+    }
+
+    public void setLp_dependencia_informante(String lp_dependencia_informante) {
+        this.lp_dependencia_informante = lp_dependencia_informante;
+    }
+
+    public Double getLp_columna_succion() {
+        return lp_columna_succion;
+    }
+
+    public void setLp_columna_succion(Double lp_columna_succion) {
+        this.lp_columna_succion = lp_columna_succion;
     }
 
 

@@ -9,12 +9,26 @@ import org.springframework.stereotype.Service;
 //import com.iitca.tecnodesarrollo.dto.ErrorMsg;
 import com.iitca.tecnodesarrollo.dto.Lista_pozos;
 import com.iitca.tecnodesarrollo.repo.Lista_pozosRepo;
+import com.iitca.tecnodesarrollo.repo.Alertas_pozosRepo;
+import com.iitca.tecnodesarrollo.repo.OperacionRepo;
+import com.iitca.tecnodesarrollo.repo.MantenimientoRepo;
+import com.iitca.tecnodesarrollo.repo.Parametros_calidadRepo;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class Lista_pozosService {
 
 	@Autowired
 	private Lista_pozosRepo lista_pozosRepo;
+
+	@Autowired
+	private Alertas_pozosRepo alertasRepo;
+	@Autowired
+	private OperacionRepo operacionRepo;
+	@Autowired
+	private MantenimientoRepo mantenimientoRepo;
+	@Autowired
+	private Parametros_calidadRepo parametrosRepo;
 	
 	public List<Lista_pozos> listAll(){
 		return lista_pozosRepo.findAll();
@@ -48,13 +62,22 @@ public class Lista_pozosService {
 			lista_pozosFoundToUpdate.setLp_telemetria(lista_pozosToUpate.getLp_telemetria());
 			lista_pozosFoundToUpdate.setLp_utr(lista_pozosToUpate.getLp_utr());
 			lista_pozosFoundToUpdate.setLp_altura(lista_pozosToUpate.getLp_altura());
+			lista_pozosFoundToUpdate.setLp_estado(lista_pozosToUpate.getLp_estado());
+			lista_pozosFoundToUpdate.setLp_municipio(lista_pozosToUpate.getLp_municipio());
+			lista_pozosFoundToUpdate.setLp_dependencia_informante(lista_pozosToUpate.getLp_dependencia_informante());
+			lista_pozosFoundToUpdate.setLp_columna_succion(lista_pozosToUpate.getLp_columna_succion());
 			return lista_pozosRepo.save(lista_pozosFoundToUpdate);
 		}else {
 			return null;
 		}
 	}
 	
+	@Transactional
 	public void deletelista_pozos(int id_lp) {
+		alertasRepo.deleteAll(alertasRepo.findByIdLp(id_lp));
+		operacionRepo.deleteAll(operacionRepo.findByIdLp(id_lp));
+		mantenimientoRepo.deleteAll(mantenimientoRepo.findByIdLp(id_lp));
+		parametrosRepo.deleteAll(parametrosRepo.findByPozoId(id_lp));
 		 lista_pozosRepo.deleteById(id_lp);
 	}
 }

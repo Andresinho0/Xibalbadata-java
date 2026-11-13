@@ -59,6 +59,10 @@ public class Lista_pozosControler {
 		System.out.println(lista_pozos.getLp_telemetria());
 		System.out.println(lista_pozos.getLp_utr());
 		System.out.println(lista_pozos.getLp_altura());
+		System.out.println(lista_pozos.getLp_estado());
+		System.out.println(lista_pozos.getLp_municipio());
+		System.out.println(lista_pozos.getLp_dependencia_informante());
+		System.out.println(lista_pozos.getLp_columna_succion());
 
 		return new ResponseEntity<>(lista_pozosService.savelista_pozos(lista_pozos),HttpStatus.CREATED);
 	}
