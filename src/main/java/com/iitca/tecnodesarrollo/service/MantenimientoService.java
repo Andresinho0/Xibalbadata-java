@@ -69,6 +69,14 @@ public class MantenimientoService {
             mantenimientoFoundToUpdate.setMtto_electrica_exterior(mantenimientoToUpate.getMtto_electrica_exterior());
             mantenimientoFoundToUpdate.setMtto_electrica_inferior(mantenimientoToUpate.getMtto_electrica_inferior());
             mantenimientoFoundToUpdate.setMtto_sanitaria(mantenimientoToUpate.getMtto_sanitaria());
+            mantenimientoFoundToUpdate.setMtto_bomba_marca(mantenimientoToUpate.getMtto_bomba_marca());
+            mantenimientoFoundToUpdate.setMtto_bomba_lps(mantenimientoToUpate.getMtto_bomba_lps());
+            mantenimientoFoundToUpdate.setMtto_bomba_rpm(mantenimientoToUpate.getMtto_bomba_rpm());
+            mantenimientoFoundToUpdate.setMtto_bomba_hp(mantenimientoToUpate.getMtto_bomba_hp());
+            mantenimientoFoundToUpdate.setMtto_tablero_marca(mantenimientoToUpate.getMtto_tablero_marca());
+            mantenimientoFoundToUpdate.setMtto_tablero_hp(mantenimientoToUpate.getMtto_tablero_hp());
+            mantenimientoFoundToUpdate.setMtto_tablero_voltaje(mantenimientoToUpate.getMtto_tablero_voltaje());
+            mantenimientoFoundToUpdate.setMtto_transformador_marca(mantenimientoToUpate.getMtto_transformador_marca());
 
             return mantenimientoRepo.save(mantenimientoFoundToUpdate);
         } else {

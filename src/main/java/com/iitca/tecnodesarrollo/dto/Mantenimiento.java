@@ -33,7 +33,7 @@ public class Mantenimiento {
     private Integer mtto_motor_kw;
 
     @Column(name="mtto_motor_eficiencia")
-    private Integer mtto_motor_eficiencia;
+    private Double mtto_motor_eficiencia;
 
     @Column(name="mtto_tablero_tipo")
     private String mtto_tablero_tipo;
@@ -116,6 +116,30 @@ public class Mantenimiento {
     @Column(name="mtto_sanitaria")
     private String mtto_sanitaria;
 
+    @Column(name="mtto_bomba_marca")
+    private String mtto_bomba_marca;
+
+    @Column(name="mtto_bomba_lps")
+    private Double mtto_bomba_lps;
+
+    @Column(name="mtto_bomba_rpm")
+    private Integer mtto_bomba_rpm;
+
+    @Column(name="mtto_bomba_hp")
+    private Double mtto_bomba_hp;
+
+    @Column(name="mtto_tablero_marca")
+    private String mtto_tablero_marca;
+
+    @Column(name="mtto_tablero_hp")
+    private Double mtto_tablero_hp;
+
+    @Column(name="mtto_tablero_voltaje")
+    private Integer mtto_tablero_voltaje;
+
+    @Column(name="mtto_transformador_marca")
+    private String mtto_transformador_marca;
+
 
     // --- GETTERS Y SETTERS --- //
 
@@ -175,11 +199,11 @@ public class Mantenimiento {
         this.mtto_motor_kw = mtto_motor_kw;
     }
 
-    public Integer getMtto_motor_eficiencia() {
+    public Double getMtto_motor_eficiencia() {
         return mtto_motor_eficiencia;
     }
 
-    public void setMtto_motor_eficiencia(Integer mtto_motor_eficiencia) {
+    public void setMtto_motor_eficiencia(Double mtto_motor_eficiencia) {
         this.mtto_motor_eficiencia = mtto_motor_eficiencia;
     }
 
@@ -397,6 +421,70 @@ public class Mantenimiento {
 
     public void setMtto_sanitaria(String mtto_sanitaria) {
         this.mtto_sanitaria = mtto_sanitaria;
+    }
+
+    public String getMtto_bomba_marca() {
+        return mtto_bomba_marca;
+    }
+
+    public void setMtto_bomba_marca(String mtto_bomba_marca) {
+        this.mtto_bomba_marca = mtto_bomba_marca;
+    }
+
+    public Double getMtto_bomba_lps() {
+        return mtto_bomba_lps;
+    }
+
+    public void setMtto_bomba_lps(Double mtto_bomba_lps) {
+        this.mtto_bomba_lps = mtto_bomba_lps;
+    }
+
+    public Integer getMtto_bomba_rpm() {
+        return mtto_bomba_rpm;
+    }
+
+    public void setMtto_bomba_rpm(Integer mtto_bomba_rpm) {
+        this.mtto_bomba_rpm = mtto_bomba_rpm;
+    }
+
+    public Double getMtto_bomba_hp() {
+        return mtto_bomba_hp;
+    }
+
+    public void setMtto_bomba_hp(Double mtto_bomba_hp) {
+        this.mtto_bomba_hp = mtto_bomba_hp;
+    }
+
+    public String getMtto_tablero_marca() {
+        return mtto_tablero_marca;
+    }
+
+    public void setMtto_tablero_marca(String mtto_tablero_marca) {
+        this.mtto_tablero_marca = mtto_tablero_marca;
+    }
+
+    public Double getMtto_tablero_hp() {
+        return mtto_tablero_hp;
+    }
+
+    public void setMtto_tablero_hp(Double mtto_tablero_hp) {
+        this.mtto_tablero_hp = mtto_tablero_hp;
+    }
+
+    public Integer getMtto_tablero_voltaje() {
+        return mtto_tablero_voltaje;
+    }
+
+    public void setMtto_tablero_voltaje(Integer mtto_tablero_voltaje) {
+        this.mtto_tablero_voltaje = mtto_tablero_voltaje;
+    }
+
+    public String getMtto_transformador_marca() {
+        return mtto_transformador_marca;
+    }
+
+    public void setMtto_transformador_marca(String mtto_transformador_marca) {
+        this.mtto_transformador_marca = mtto_transformador_marca;
     }
 
 }
