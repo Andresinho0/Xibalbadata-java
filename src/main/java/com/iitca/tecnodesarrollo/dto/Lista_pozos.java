@@ -77,7 +77,7 @@ public class Lista_pozos {
     @Column (name = "lp_dependencia_informante")
     private String lp_dependencia_informante;
 
-    @Column (name = "lp_columna_succion", precision = 10, scale = 2)
+    @Column (name = "lp_columna_succion")
     private Double lp_columna_succion;
 
 
