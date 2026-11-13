@@ -393,19 +393,19 @@ public class ReporteService {
      */
     private PdfPTable crearSeccionCalidad(String titulo, List<Parametros_calidad> muestras)
             throws DocumentException {
-        PdfPTable tabla = new PdfPTable(4);
+        PdfPTable tabla = new PdfPTable(6);
         tabla.setWidthPercentage(100);
-        tabla.setWidths(new float[]{27f, 23f, 27f, 23f});
+        tabla.setWidths(new float[]{27f, 23f, 27f, 23f, 23f, 23f});
         tabla.setSpacingBefore(12);
         tabla.setHeaderRows(1);
         tabla.setKeepTogether(muestras.size() == 1);
 
-        tabla.addCell(cabeceraSeccion(titulo, 4));
+        tabla.addCell(cabeceraSeccion(titulo, 6));
 
         int n = 1;
         for (Parametros_calidad p : muestras) {
             if (muestras.size() > 1) {
-                tabla.addCell(subcabecera("MUESTRA " + n++, 4, AZUL_MEDIO));
+                tabla.addCell(subcabecera("MUESTRA " + n++, 6, AZUL_MEDIO));
             }
 
             agregarGrupoCalidad(tabla, "PARÁMETROS DE CAMPO", List.of(
@@ -413,13 +413,12 @@ public class ReporteService {
                     new String[]{"pH", numero(p.getPh(), "")},
                     new String[]{"CONDUCTIVIDAD ELÉCTRICA (CE)", numero(p.getCeUsCm(), "µS/cm")},
                     new String[]{"SÓLIDOS DISUELTOS TOTALES (SDT)", numero(p.getSdtPpm(), "ppm")},
-                    new String[]{"POTENCIAL REDOX (Eh)", numero(p.getEhMv(), "mV")},
-                    new String[]{"OXÍGENO DISUELTO (SATURACIÓN)", numero(p.getOdPorcentaje(), "%")},
-                    new String[]{"OXÍGENO DISUELTO (OD)", numero(p.getOdMgL(), "mg/L")}));
+                    new String[]{"POTENCIAL REDOX (Eh)", numero(p.getEhMv(), "mV")}));
 
             agregarGrupoCalidad(tabla, "QUÍMICA DEL AGUA", List.of(
+                    new String[]{"OXÍGENO DISUELTO (SATURACIÓN)", numero(p.getOdPorcentaje(), "%")},
+                    new String[]{"OXÍGENO DISUELTO (OD)", numero(p.getOdMgL(), "mg/L")},
                     new String[]{"CLORUROS (Cl-)", numero(p.getClorurosMgL(), "mg/L")},
-                    // Nitratos es texto: puede venir como "0.04*" o "N.D"
                     new String[]{"NITRATOS (N-NO3-)", textoConUnidad(p.getNitratosMgL(), "mg/L")},
                     new String[]{"SULFATOS (SO4 2-)", numero(p.getSulfatosMgL(), "mg/L")},
                     new String[]{"ALCALINIDAD", numero(p.getAlcalinidadMgCaco3L(), "mg CaCO3/L")},
@@ -433,7 +432,7 @@ public class ReporteService {
     }
 
     private void agregarGrupoCalidad(PdfPTable tabla, String grupo, List<String[]> campos) {
-        tabla.addCell(subcabecera(grupo, 4, AZUL_CLARO));
+        tabla.addCell(subcabecera(grupo, 6, AZUL_CLARO));
 
         Color fondo = null;
         for (int i = 0; i < campos.size(); i++) {
@@ -474,13 +473,13 @@ public class ReporteService {
     /** Sección de 4 columnas (etiqueta, valor, etiqueta, valor) con observaciones opcionales a todo el ancho. */
     private PdfPTable crearSeccionCampos(String titulo, List<String[]> campos, String observaciones)
             throws DocumentException {
-        PdfPTable tabla = new PdfPTable(4);
+        PdfPTable tabla = new PdfPTable(6);
         tabla.setWidthPercentage(100);
-        tabla.setWidths(new float[]{24f, 26f, 24f, 26f});
+        tabla.setWidths(new float[]{24f, 26f, 24f, 26f, 24f, 26f});
         tabla.setSpacingBefore(12);
         tabla.setHeaderRows(1);
 
-        tabla.addCell(cabeceraSeccion(titulo, 4));
+        tabla.addCell(cabeceraSeccion(titulo, 6));
 
         Color fondo = null;
         for (int i = 0; i < campos.size(); i++) {
@@ -497,7 +496,7 @@ public class ReporteService {
         if (observaciones != null && !observaciones.isBlank()) {
             tabla.addCell(celda("OBSERVACIONES", F_ETIQUETA, null));
             PdfPCell obs = celda(observaciones.trim(), F_VALOR, null);
-            obs.setColspan(3);
+            obs.setColspan(5);
             tabla.addCell(obs);
         }
         return tabla;
