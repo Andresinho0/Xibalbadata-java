@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iitca.tecnodesarrollo.dto.CierreRequest;
 import com.iitca.tecnodesarrollo.dto.Operacion;
 import com.iitca.tecnodesarrollo.service.OperacionService;
 
@@ -41,6 +42,32 @@ public class OperacionControler {
 	public ResponseEntity<?> getoperacionByIdPozo(@PathVariable int id_lp){
 		System.out.println("id_pozo_op"+id_lp);
 		return ResponseEntity.ok(operacionService.getoperacionByIdPozo(id_lp));
+	}
+
+	@GetMapping("/pendientes")
+	public ResponseEntity<?> getoperacionesPendientes(){
+		return ResponseEntity.ok(operacionService.listPendientes());
+	}
+
+	@GetMapping("/historial")
+	public ResponseEntity<?> getHistorialoperacion(){
+		return ResponseEntity.ok(operacionService.listHistorial());
+	}
+
+	@GetMapping("/historial/pozo/{id_lp}")
+	public ResponseEntity<?> getHistorialoperacionByIdPozo(@PathVariable int id_lp){
+		return ResponseEntity.ok(operacionService.listHistorialPorPozo(id_lp));
+	}
+
+	@PutMapping("/{id_op}/completar")
+	public ResponseEntity<?> completaroperacion(@PathVariable int id_op, @RequestBody(required = false) CierreRequest cierre){
+		try {
+			return operacionService.completaroperacion(id_op, cierre)
+					.<ResponseEntity<?>>map(ResponseEntity::ok)
+					.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe la operación " + id_op));
+		} catch (IllegalStateException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}
 	}
 	//hasta aqui
 	

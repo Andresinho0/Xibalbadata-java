@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iitca.tecnodesarrollo.dto.CierreRequest;
 import com.iitca.tecnodesarrollo.dto.Mantenimiento;
 import com.iitca.tecnodesarrollo.service.MantenimientoService;
 
@@ -38,6 +39,32 @@ public class MantenimientoControler {
     @GetMapping("/pozo/{id_lp}")
     public ResponseEntity<?> getmantenimientoByIdPozo(@PathVariable int id_lp){
         return ResponseEntity.ok(mantenimientoService.getmantenimientoByIdPozo(id_lp));
+    }
+
+    @GetMapping("/pendientes")
+    public ResponseEntity<?> getmantenimientosPendientes(){
+        return ResponseEntity.ok(mantenimientoService.listPendientes());
+    }
+
+    @GetMapping("/historial")
+    public ResponseEntity<?> getHistorialmantenimiento(){
+        return ResponseEntity.ok(mantenimientoService.listHistorial());
+    }
+
+    @GetMapping("/historial/pozo/{clave}")
+    public ResponseEntity<?> getHistorialmantenimientoByClave(@PathVariable String clave){
+        return ResponseEntity.ok(mantenimientoService.listHistorialPorClave(clave));
+    }
+
+    @PutMapping("/{id_mtto}/completar")
+    public ResponseEntity<?> completarmantenimiento(@PathVariable int id_mtto, @RequestBody(required = false) CierreRequest cierre){
+        try {
+            return mantenimientoService.completarmantenimiento(id_mtto, cierre)
+                    .<ResponseEntity<?>>map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe el mantenimiento " + id_mtto));
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
     
     @PostMapping

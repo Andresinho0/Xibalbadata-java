@@ -1,11 +1,14 @@
 package com.iitca.tecnodesarrollo.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iitca.tecnodesarrollo.dto.CierreRequest;
+import com.iitca.tecnodesarrollo.dto.EstadoRegistro;
 import com.iitca.tecnodesarrollo.dto.Mantenimiento;
 import com.iitca.tecnodesarrollo.repo.MantenimientoRepo;
 
@@ -28,7 +31,44 @@ public class MantenimientoService {
     }
 
     public Mantenimiento savemantenimiento(Mantenimiento mantenimiento) {
+        // Todo registro nuevo nace pendiente; solo se cierra con completarmantenimiento()
+        mantenimiento.setEstado(EstadoRegistro.PENDIENTE);
+        mantenimiento.setCompletada_en(null);
+        mantenimiento.setCompletada_por(null);
+        mantenimiento.setNotas_cierre(null);
         return mantenimientoRepo.save(mantenimiento);
+    }
+
+    public List<Mantenimiento> listPendientes() {
+        return mantenimientoRepo.buscarPorEstado(EstadoRegistro.PENDIENTE);
+    }
+
+    public List<Mantenimiento> listHistorial() {
+        return mantenimientoRepo.buscarHistorial();
+    }
+
+    public List<Mantenimiento> listHistorialPorClave(String clave) {
+        return mantenimientoRepo.buscarHistorialPorClave(clave);
+    }
+
+    /**
+     * Marca el mantenimiento como completado.
+     * Devuelve Optional.empty() si no existe; lanza IllegalStateException si ya estaba completado.
+     */
+    public Optional<Mantenimiento> completarmantenimiento(int id_mtto, CierreRequest cierre) {
+        Optional<Mantenimiento> mantenimientoFound = mantenimientoRepo.findById(id_mtto);
+        if (mantenimientoFound.isEmpty()) {
+            return Optional.empty();
+        }
+        Mantenimiento mantenimiento = mantenimientoFound.get();
+        if (EstadoRegistro.COMPLETADA.equals(mantenimiento.getEstado())) {
+            throw new IllegalStateException("El mantenimiento " + id_mtto + " ya está completado");
+        }
+        mantenimiento.setEstado(EstadoRegistro.COMPLETADA);
+        mantenimiento.setCompletada_en(LocalDateTime.now());
+        mantenimiento.setCompletada_por(cierre != null ? cierre.getCompletada_por() : null);
+        mantenimiento.setNotas_cierre(cierre != null ? cierre.getNotas_cierre() : null);
+        return Optional.of(mantenimientoRepo.save(mantenimiento));
     }
     
     public Mantenimiento updatemantenimiento(int id_mtto, Mantenimiento mantenimientoToUpate) {
@@ -77,6 +117,7 @@ public class MantenimientoService {
             mantenimientoFoundToUpdate.setMtto_tablero_hp(mantenimientoToUpate.getMtto_tablero_hp());
             mantenimientoFoundToUpdate.setMtto_tablero_voltaje(mantenimientoToUpate.getMtto_tablero_voltaje());
             mantenimientoFoundToUpdate.setMtto_transformador_marca(mantenimientoToUpate.getMtto_transformador_marca());
+            // Los campos de cierre (estado, completada_*, notas_cierre) no se tocan aquí
 
             return mantenimientoRepo.save(mantenimientoFoundToUpdate);
         } else {
