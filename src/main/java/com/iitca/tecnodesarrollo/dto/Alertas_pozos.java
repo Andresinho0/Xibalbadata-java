@@ -29,6 +29,52 @@ public class Alertas_pozos {
 	@Column(name="Al_fechacap")
 	private LocalDateTime al_fechacap;
 
+    // --- Cierre / historial --- //
+
+    @Column(name = "estado", nullable = false, length = 20)
+    private String estado = EstadoRegistro.PENDIENTE;
+
+    @Column(name = "completada_en")
+    private LocalDateTime completada_en;
+
+    @Column(name = "completada_por")
+    private Integer completada_por;
+
+    @Column(name = "notas_cierre", columnDefinition = "TEXT")
+    private String notas_cierre;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getCompletada_en() {
+        return completada_en;
+    }
+
+    public void setCompletada_en(LocalDateTime completada_en) {
+        this.completada_en = completada_en;
+    }
+
+    public Integer getCompletada_por() {
+        return completada_por;
+    }
+
+    public void setCompletada_por(Integer completada_por) {
+        this.completada_por = completada_por;
+    }
+
+    public String getNotas_cierre() {
+        return notas_cierre;
+    }
+
+    public void setNotas_cierre(String notas_cierre) {
+        this.notas_cierre = notas_cierre;
+    }
+
     public int getId_al() {
         return id_al;
     }

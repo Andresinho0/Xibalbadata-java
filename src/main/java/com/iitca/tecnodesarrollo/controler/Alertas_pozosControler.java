@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iitca.tecnodesarrollo.dto.Alertas_pozos;
+import com.iitca.tecnodesarrollo.dto.CierreRequest;
 import com.iitca.tecnodesarrollo.service.Alertas_pozosService;
 
 @RestController
@@ -32,6 +33,32 @@ public class Alertas_pozosControler {
 		return ResponseEntity.ok(alertas_pozosService.listAll());
 	}
 	
+	@GetMapping("/pendientes")
+	public ResponseEntity<?> getalertasPendientes(){
+		return ResponseEntity.ok(alertas_pozosService.listPendientes());
+	}
+
+	@GetMapping("/historial")
+	public ResponseEntity<?> getHistorialalertas(){
+		return ResponseEntity.ok(alertas_pozosService.listHistorial());
+	}
+
+	@GetMapping("/historial/pozo/{id_lp}")
+	public ResponseEntity<?> getHistorialalertasByIdPozo(@PathVariable int id_lp){
+		return ResponseEntity.ok(alertas_pozosService.listHistorialPorPozo(id_lp));
+	}
+
+	@PutMapping("/{id_al}/completar")
+	public ResponseEntity<?> completaralerta(@PathVariable int id_al, @RequestBody(required = false) CierreRequest cierre){
+		try {
+			return alertas_pozosService.completaralerta(id_al, cierre)
+					.<ResponseEntity<?>>map(ResponseEntity::ok)
+					.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe la alerta " + id_al));
+		} catch (IllegalStateException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}
+	}
+
 	@GetMapping("/{id_al}")
 	public ResponseEntity<?> getPozoById(@PathVariable int id_al){
 		return ResponseEntity.ok(alertas_pozosService.getalertas_pozosByid(id_al));
