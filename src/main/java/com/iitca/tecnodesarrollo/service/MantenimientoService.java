@@ -117,6 +117,14 @@ public class MantenimientoService {
             mantenimientoFoundToUpdate.setMtto_tablero_hp(mantenimientoToUpate.getMtto_tablero_hp());
             mantenimientoFoundToUpdate.setMtto_tablero_voltaje(mantenimientoToUpate.getMtto_tablero_voltaje());
             mantenimientoFoundToUpdate.setMtto_transformador_marca(mantenimientoToUpate.getMtto_transformador_marca());
+            mantenimientoFoundToUpdate.setMtto_motor_amperaje(mantenimientoToUpate.getMtto_motor_amperaje());
+            mantenimientoFoundToUpdate.setMtto_motor_no_serie(mantenimientoToUpate.getMtto_motor_no_serie());
+            mantenimientoFoundToUpdate.setMtto_bomba_pasos(mantenimientoToUpate.getMtto_bomba_pasos());
+            mantenimientoFoundToUpdate.setMtto_bomba_no_serie(mantenimientoToUpate.getMtto_bomba_no_serie());
+            mantenimientoFoundToUpdate.setMtto_cabezal_marca(mantenimientoToUpate.getMtto_cabezal_marca());
+            mantenimientoFoundToUpdate.setMtto_cabezal_tamano(mantenimientoToUpate.getMtto_cabezal_tamano());
+            mantenimientoFoundToUpdate.setMtto_cabezal_no_serie(mantenimientoToUpate.getMtto_cabezal_no_serie());
+            mantenimientoFoundToUpdate.setMtto_tablero_no_serie(mantenimientoToUpate.getMtto_tablero_no_serie());
             // Los campos de cierre (estado, completada_*, notas_cierre) no se tocan aquí
 
             return mantenimientoRepo.save(mantenimientoFoundToUpdate);

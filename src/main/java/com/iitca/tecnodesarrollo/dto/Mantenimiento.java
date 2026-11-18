@@ -140,6 +140,30 @@ public class Mantenimiento {
     @Column(name="mtto_transformador_marca")
     private String mtto_transformador_marca;
 
+    @Column(name="motor_amperaje", precision = 8, scale = 2)
+    private Double mtto_motor_amperaje;
+
+    @Column(name="motor_no_serie")
+    private Long mtto_motor_no_serie;
+
+    @Column(name="bomba_pasos")
+    private Integer mtto_bomba_pasos;
+
+    @Column(name="bomba_no_serie")
+    private Long mtto_bomba_no_serie;
+
+    @Column(name="cabezal_marca", length = 100)
+    private String mtto_cabezal_marca;
+
+    @Column(name="cabezal_tamano", precision = 5, scale = 1)
+    private Double mtto_cabezal_tamano;
+
+    @Column(name="cabezal_no_serie")
+    private Long mtto_cabezal_no_serie;
+
+    @Column(name="tablero_no_serie")
+    private Long mtto_tablero_no_serie;
+
     // --- Cierre / historial --- //
 
     @Column(name = "estado", nullable = false, length = 20)
@@ -531,6 +555,70 @@ public class Mantenimiento {
 
     public void setMtto_transformador_marca(String mtto_transformador_marca) {
         this.mtto_transformador_marca = mtto_transformador_marca;
+    }
+
+    public Double getMtto_motor_amperaje() {
+        return mtto_motor_amperaje;
+    }
+
+    public void setMtto_motor_amperaje(Double mtto_motor_amperaje) {
+        this.mtto_motor_amperaje = mtto_motor_amperaje;
+    }
+
+    public Long getMtto_motor_no_serie() {
+        return mtto_motor_no_serie;
+    }
+
+    public void setMtto_motor_no_serie(Long mtto_motor_no_serie) {
+        this.mtto_motor_no_serie = mtto_motor_no_serie;
+    }
+
+    public Integer getMtto_bomba_pasos() {
+        return mtto_bomba_pasos;
+    }
+
+    public void setMtto_bomba_pasos(Integer mtto_bomba_pasos) {
+        this.mtto_bomba_pasos = mtto_bomba_pasos;
+    }
+
+    public Long getMtto_bomba_no_serie() {
+        return mtto_bomba_no_serie;
+    }
+
+    public void setMtto_bomba_no_serie(Long mtto_bomba_no_serie) {
+        this.mtto_bomba_no_serie = mtto_bomba_no_serie;
+    }
+
+    public String getMtto_cabezal_marca() {
+        return mtto_cabezal_marca;
+    }
+
+    public void setMtto_cabezal_marca(String mtto_cabezal_marca) {
+        this.mtto_cabezal_marca = mtto_cabezal_marca;
+    }
+
+    public Double getMtto_cabezal_tamano() {
+        return mtto_cabezal_tamano;
+    }
+
+    public void setMtto_cabezal_tamano(Double mtto_cabezal_tamano) {
+        this.mtto_cabezal_tamano = mtto_cabezal_tamano;
+    }
+
+    public Long getMtto_cabezal_no_serie() {
+        return mtto_cabezal_no_serie;
+    }
+
+    public void setMtto_cabezal_no_serie(Long mtto_cabezal_no_serie) {
+        this.mtto_cabezal_no_serie = mtto_cabezal_no_serie;
+    }
+
+    public Long getMtto_tablero_no_serie() {
+        return mtto_tablero_no_serie;
+    }
+
+    public void setMtto_tablero_no_serie(Long mtto_tablero_no_serie) {
+        this.mtto_tablero_no_serie = mtto_tablero_no_serie;
     }
 
 }
