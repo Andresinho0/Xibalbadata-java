@@ -140,7 +140,7 @@ public class Mantenimiento {
     @Column(name="mtto_transformador_marca")
     private String mtto_transformador_marca;
 
-    @Column(name="motor_amperaje", precision = 8, scale = 2)
+    @Column(name="motor_amperaje")
     private Double mtto_motor_amperaje;
 
     @Column(name="motor_no_serie")
@@ -155,7 +155,7 @@ public class Mantenimiento {
     @Column(name="cabezal_marca", length = 100)
     private String mtto_cabezal_marca;
 
-    @Column(name="cabezal_tamano", precision = 5, scale = 1)
+    @Column(name="cabezal_tamano")
     private Double mtto_cabezal_tamano;
 
     @Column(name="cabezal_no_serie")
