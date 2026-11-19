@@ -50,7 +50,6 @@ public class UsuariosControler {
 		System.out.println(usuarios.getUs_nombre());
         System.out.println(usuarios.getUs_correo());
 		System.out.println(usuarios.getUs_matricula());
-        System.out.println(usuarios.getUs_contrasena());
         System.out.println(usuarios.getUs_telefono());
         System.out.println(usuarios.getUs_tipo());
 		return new ResponseEntity<>(usuariosService.saveusuarios(usuarios),HttpStatus.CREATED);
